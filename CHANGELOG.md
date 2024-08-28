@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.0.6
+_2024/08/28_
+* Fixed issue with version in header in deployed application
+
 ### Version 1.0.5
 _2024/08/28_
 * Display version in header
