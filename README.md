@@ -3,25 +3,6 @@
 Deployed automatically using GitHub pages to https://mkiki.github.io/chords/
 
 
-# Changelog
-
-### Version 1.0.3
-_2024/08/28_
-* Small refactoring to simplify adding songs
-
-### Version 1.0.2
-_2024/08/28_
-* Deploy to github using Git Pages
-
-### Version 1.0.1
-_2024/08/28_
-* Created git project
-* Added song "You are my sunshine"
-* Added song "Will the circle be unbroken"
-* Added support for "ghost" notes
-
-
-
 # Dev operations
 
 ```sh
@@ -62,7 +43,7 @@ Each "note" in a group is a string with a particular format
 * For actual notes, the duration is followed by 2 numbers, first the string nummber (1 for the top string, and 5 for the drone string), the the fret number
 * Optionally, this can be followed by a comment statting with a "+". The comment will be displayed below the group note. Special comments surrounded with "(" and ")" will be displayed inside a circle
 * To support multiple notes vertically, add a comma and another note. For example: "E10,E20,E30"
-* For a hammer effect, add "H" suffix to the starting note
+* For a hammer effect, add "H" suffix to the ending note
 * For a pull off effect, add "P" suffix to the ending note
 * For a slide effect, add "S" suffix to the ending note
 * For a ghost note effect, add "g" suffix to the note

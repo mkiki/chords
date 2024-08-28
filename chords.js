@@ -154,7 +154,7 @@ const getSong = (name) => {
 const getMenu = (category) => {
   const menu = [];
   for (let song of songs) {
-    if (!song.categories || !categories.categories.includes(category))
+    if (!song.categories || !song.categories.includes(category))
       continue;
     menu.push({
       id: "menu-song-" + song.name,

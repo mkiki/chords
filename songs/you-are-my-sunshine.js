@@ -32,7 +32,7 @@ registerSong({
         {
           groups: [
             { notes: [ "E30", "S10,S20,S30", "S50" ]},
-            { notes: [ "S40H", "S42", "S30,S42", "S40P" ]},
+            { notes: [ "S40", "S42H", "S30,S42", "S40P" ]},
           ],
         },
         {
@@ -43,7 +43,7 @@ registerSong({
         },
         {
           groups: [
-            { chord: "C", notes: [ "S20H", "S21", "S12,S21,S30", "S50" ]},
+            { chord: "C", notes: [ "S20", "S21H", "S12,S21,S30", "S50" ]},
             { notes: [ "E12", "S12,S21,S30", "S50" ]},
           ],
         },
@@ -67,7 +67,7 @@ registerSong({
         },
         {
           groups: [
-            { chord: "C", notes: [ "S20H", "S21", "S12,S21,S30", "S50" ]},
+            { chord: "C", notes: [ "S20", "S21H", "S12,S21,S30", "S50" ]},
             { notes: [ "S12g", "S21+T", "S12,S21,S30", "S50" ]},
           ],
         },
