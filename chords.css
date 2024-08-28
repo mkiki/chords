@@ -37,6 +37,12 @@ body {
   flex-grow: 1;
 }
 
+.version {
+  margin-left: 40px;
+  margin-top: 4px;
+  font-size: 0.5em;
+}
+
 .header .banjo {
   width: 80px;
   height: 80px;

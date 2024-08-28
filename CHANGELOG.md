@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.0.5
+_2024/08/28_
+* Display version in header
+
 ### Version 1.0.4
 _2024/08/28_
 * Fixed error in previous commit
