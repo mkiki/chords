@@ -1,8 +1,10 @@
-registerSong("wellerman", {
+registerSong({
+  name: "wellerman",
   title: "The Wellerman",
   author: "Traditional",
   tuning: "doublec",
   tempo: 120,
+  categories: [ "banjo", "song" ],
   chords: [ "Cm", "Fm", "G", "Ab", "Eb" ],
   tab: [
     {

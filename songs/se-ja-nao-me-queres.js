@@ -1,6 +1,8 @@
-registerSong("se-ja-nao-me-queres", {
+registerSong({
+  name: "se-ja-nao-me-queres",
   title: "Se Já Não Me Queres",
   author: "Luísa Sobral",
+  categories: [ "song"],
   lyrics: [
     {
       type: "verse",

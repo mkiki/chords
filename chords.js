@@ -141,11 +141,28 @@ const options = {
   lyricsy: 60,
 }
 
-const songs = {
-};
+const songs = [];
 
-const registerSong = (name, song) => {
-  songs[name] = song;
+const registerSong = (song) => {
+  songs.push(song);
+}
+
+const getSong = (name) => {
+  return songs.find(s => s.name === name);
+}
+
+const getMenu = (category) => {
+  const menu = [];
+  for (let song of songs) {
+    if (!song.categories || !categories.categories.includes(category))
+      continue;
+    menu.push({
+      id: "menu-song-" + song.name,
+      name: song.title,
+      param: song.name
+    });
+  }
+  return menu;
 }
 
 
@@ -640,7 +657,7 @@ function drawEightNote(parent, x, y) {
 
 function showSong(displayOptions, name) {
   const parent = svg;
-  const song = songs[name];
+  const song = getSong(name);
   clear(song.title, song.author);
 
   let x = 100;

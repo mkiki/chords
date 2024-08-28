@@ -60,20 +60,8 @@
             { id: "menu-chords-sawmill", name: "Sawmill", param: "sawmill" },
             { id: "menu-chords-doublec", name: "Double C", param: "doublec" },
         ];
-        const banjoMenuItems = [
-            { id: "menu-song-shady-grove", name: "Shady Grove", param: "shady-grove" },
-            { id: "menu-song-wellerman", name: "The Wellerman", param: "wellerman" },
-            { id: "menu-song-elk-river-blues", name: "Elk River Blues", param: "elk-river-blues" },
-            { id: "menu-song-leyenda", name: "Leyenda", param: "leyenda" },
-            { id: "menu-song-will-the-circle-be-unbroken", name: "Will the Circle Be Unbroken", param: "will-the-circle-be-unbroken" },
-            { id: "menu-song-you-are-my-sunshine", name: "You are my Sunshine", param: "you-are-my-sunshine" },
-        ];
-        const songMenuItems = [
-            { id: "menu-song-comin-home", name: "Comin' Home", param: "comin-home" },
-            { id: "menu-song-lets-face-the-music", name: "Let’s face the music and dance", param: "lets-face-the-music" },
-            { id: "menu-song-por-el-amor-de-amar", name: "Por el amor de amar", param: "por-el-amor-de-amar" },
-            { id: "menu-song-se-ja-nao-me-queres", name: "Se Já Não Me Queres", param: "se-ja-nao-me-queres" },            
-        ];
+        const banjoMenuItems = getMenu("banjo");
+        const songMenuItems = getMenu("song");
 
         function refresh() {
             songActions = "none";

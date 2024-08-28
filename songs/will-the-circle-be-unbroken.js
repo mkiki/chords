@@ -1,7 +1,9 @@
-registerSong("will-the-circle-be-unbroken", {
+registerSong({
+  name: "will-the-circle-be-unbroken",
   title: "Will the Circle Be Unbroken",
   author: "Ada R. Habershon, Charles H. Gabriel.",
   tuning: "openg",
+  categories: [ "banjo", "song" ],
   tempo: 120,
   chords: [ "G", "C", "D" ],
   tab: [

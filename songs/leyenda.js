@@ -1,7 +1,9 @@
-registerSong("leyenda", {
+registerSong({
+  name: "leyenda",
   title: "Leyenda",
   author: "Albeniz",
   tuning: "sawmill",
+  categories: [ "banjo"],
   tab: [
     {
       name: "A",

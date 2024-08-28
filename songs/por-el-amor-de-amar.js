@@ -1,6 +1,8 @@
-registerSong("por-el-amor-de-amar", {
+registerSong({
+  name: "por-el-amor-de-amar",
   title: "Por el amor de amar",
   author: "Buika",
+  categories: [ "song"],
   lyrics: [
     {
       type: "verse",

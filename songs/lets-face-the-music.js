@@ -1,6 +1,8 @@
-registerSong("lets-face-the-music", {
+registerSong({
+  name: "lets-face-the-music",
   title: "Let’s face the music and dance",
   author: "Irving Berlin",
+  categories: [ "song"],
   lyrics: [
     {
       type: "verse",

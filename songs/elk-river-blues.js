@@ -1,7 +1,9 @@
-registerSong("elk-river-blues", {
+registerSong({
+  name: "elk-river-blues",
   title: "Elk River Blues",
   author: "Traditional",
   tuning: "openg",
+  categories: [ "banjo"],
   tempo: 120,
   chords: [ "G", "C", "D7" ],
   tab: [

@@ -1,7 +1,9 @@
-registerSong("shady-grove", {
+registerSong({
+  name: "shady-grove",
   title: "Shady Grove",
   author: "Doc Watson",
   tuning: "sawmill",
+  categories: [ "banjo", "song" ],
   tempo: 120,
   chords: [ "Gsus", "F" ],
   tab: [

@@ -1,7 +1,9 @@
-registerSong("you-are-my-sunshine", {
+registerSong({
+  name: "you-are-my-sunshine",
   title: "You are my Sunshine",
   author: "Jimmie Davis & Charles Mitchell",
   tuning: "openg",
+  categories: [ "banjo", "song" ],
   tempo: 120,
   chords: [ "G", "C", "D" ],
   tab: [

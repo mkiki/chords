@@ -1,6 +1,8 @@
-registerSong("comin-home", {
+registerSong({
+  name: "comin-home",
   title: "Comin' Home",
   author: "Mel Tormé",
+  categories: [ "song"],
   lyrics: [
     {
       type: "struct",

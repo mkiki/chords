@@ -5,6 +5,10 @@ Deployed automatically using GitHub pages to https://mkiki.github.io/chords/
 
 # Changelog
 
+### Version 1.0.3
+_2024/08/28_
+* Small refactoring to simplify adding songs
+
 ### Version 1.0.2
 _2024/08/28_
 * Deploy to github using Git Pages
@@ -33,6 +37,12 @@ A song has the following attributes
 * chords, an array of the chords in this song
 * tab, the tablature
 * lyrics, the lyrics
+
+### Add a song
+* Create a JS file in the `songs` folder. This file must call the `registerSong` with a song object as a parameter
+* Make sure the song has a unique name
+* Choose one or multiple categories, either "banjo", "song", or both
+
 
 ### Tablature format
 
