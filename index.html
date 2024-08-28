@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chords</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="chords.css">
+    <script src="d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <img src="Banjo.png" alt="Banjo" class="banjo">
+        Banjo Tunes
+        <div class="hgap"></div>
+        <div class="action-bar">
+            <img style="display: none" id="view-tablature" src="tablature.svg" class="action selected"/>
+            <img style="display: none" id="view-lyrics" src="lyrics.svg" class="action selected"/>
+        </div>
+        <div class="hgap"></div>
+        <div class="action-bar">
+            <img id="display-screen" src="screen.svg" class="display action selected"/>
+            <img id="display-print" src="print.svg" class="display action"/>
+        </div>
+    </div>
+    <div class="body">
+        <div class="lrail">
+            <div id="chord-menu" class="menu"></div>
+            <div id="banjo-menu" class="menu"></div>
+            <div id="song-menu" class="menu"></div>
+        </div>
+        <div class="canvas">
+            <svg id="svg"></svg>
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+    <script src="chords.js"></script>
+    <script src="songs/shady-grove.js"></script>
+    <script src="songs/wellerman.js"></script>
+    <script src="songs/elk-river-blues.js"></script>
+    <script src="songs/comin-home.js"></script>
+    <script src="songs/lets-face-the-music.js"></script>
+    <script src="songs/por-el-amor-de-amar.js"></script>
+    <script src="songs/se-ja-nao-me-queres.js"></script>
+    <script src="songs/leyenda.js"></script>
+    <script src="songs/will-the-circle-be-unbroken.js"></script>
+    <script src="songs/you-are-my-sunshine.js"></script>
+    
+    <script>
+        let pageType = undefined;
+        let displayMode = "screen";
+        let displayFunc = undefined;
+
+        const chordMenuItems = [
+            { id: "menu-chords-openg", name: "Open G", param: "openg" },
+            { id: "menu-chords-sawmill", name: "Sawmill", param: "sawmill" },
+            { id: "menu-chords-doublec", name: "Double C", param: "doublec" },
+        ];
+        const banjoMenuItems = [
+            { id: "menu-song-shady-grove", name: "Shady Grove", param: "shady-grove" },
+            { id: "menu-song-wellerman", name: "The Wellerman", param: "wellerman" },
+            { id: "menu-song-elk-river-blues", name: "Elk River Blues", param: "elk-river-blues" },
+            { id: "menu-song-leyenda", name: "Leyenda", param: "leyenda" },
+            { id: "menu-song-will-the-circle-be-unbroken", name: "Will the Circle Be Unbroken", param: "will-the-circle-be-unbroken" },
+            { id: "menu-song-you-are-my-sunshine", name: "You are my Sunshine", param: "you-are-my-sunshine" },
+        ];
+        const songMenuItems = [
+            { id: "menu-song-comin-home", name: "Comin' Home", param: "comin-home" },
+            { id: "menu-song-lets-face-the-music", name: "Let’s face the music and dance", param: "lets-face-the-music" },
+            { id: "menu-song-por-el-amor-de-amar", name: "Por el amor de amar", param: "por-el-amor-de-amar" },
+            { id: "menu-song-se-ja-nao-me-queres", name: "Se Já Não Me Queres", param: "se-ja-nao-me-queres" },            
+        ];
+
+        function refresh() {
+            songActions = "none";
+            if (pageType == "song")
+                songActions = "block";
+            
+            document.getElementById("view-tablature").style.display = songActions;
+            document.getElementById("view-lyrics").style.display = songActions;
+
+            if (displayFunc) {
+                displayFunc.call(this, displayMode);
+            }
+        }
+
+        function selectMenuItem(id) {
+            const elements = document.querySelectorAll('.menu-item');
+            for (var i = 0; i < elements.length; i++)
+                elements[i].classList.remove('selected');
+            document.getElementById(id).classList.add('selected');
+        }
+
+        function createMenu(id, title, items, newPageType, fn) {
+            const menu = document.getElementById(id);
+            menu.innerHTML = "";
+            menu.innerHTML += "<div class='menu-title'><span>" + title + "</span></div>";
+            for (var i = 0; i < items.length; i++) {
+                menu.innerHTML += "<div class='menu-item' id='" + items[i].id + "'><span>" + items[i].name + "</span></div>";
+            }
+
+            for (var i = 0; i < items.length; i++) {
+                const itemId = items[i].id;
+                const param = items[i].param;
+                document.getElementById(itemId).addEventListener("click", function() {
+                    selectMenuItem(itemId);
+                    pageType = newPageType;
+                    displayFunc = (mode) => {
+                        const options = {
+                            displayMode: mode,
+                            showTablature: document.getElementById("view-tablature").classList.contains('selected'),
+                            showLyrics: document.getElementById("view-lyrics").classList.contains('selected')
+                        };
+                        fn.call(this, options, param);
+                    }
+                    refresh();
+                });
+            }
+        }
+
+        createMenu("chord-menu", "Chords", chordMenuItems, "chords", showChords);
+        createMenu("banjo-menu", "Banjo", banjoMenuItems, "song", showSong);
+        createMenu("song-menu", "Songs", songMenuItems, "song", showSong);
+
+        // Toggle buttons for display mode: "screen" or "print"
+        function setDisplayMode(mode) {
+            const elements = document.querySelectorAll('.display');
+            for (var i = 0; i < elements.length; i++)
+                elements[i].classList.remove('selected');
+            document.getElementById("display-" + mode).classList.add('selected');
+            displayMode = mode;
+            refresh();
+        }
+
+        document.getElementById("display-screen").addEventListener("click", function() {
+            setDisplayMode("screen");
+        });
+        document.getElementById("display-print").addEventListener("click", function() {
+            setDisplayMode("print");
+        });
+
+        // Toggle buttons for song options: display "tablature" and display "lyrics"
+        function toggleSelected(id) {
+            const dom = document.getElementById(id);
+            const selected = dom.classList.contains('selected');
+            if (selected)
+                dom.classList.remove("selected");
+            else
+                dom.classList.add("selected");
+        }
+        document.getElementById("view-tablature").addEventListener("click", function() {
+            toggleSelected("view-tablature");
+            refresh();
+        });
+        document.getElementById("view-lyrics").addEventListener("click", function() {
+            toggleSelected("view-lyrics");
+            refresh();
+        });
+
+    </script>
+</body>
+</html>
