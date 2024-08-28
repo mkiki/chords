@@ -1,7 +1,13 @@
 # Print Guitar Chords
 
+Deployed automatically using GitHub pages to https://mkiki.github.io/chords/
+
 
 # Changelog
+
+### Version 1.0.2
+_2024/08/28_
+* Deploy to github using Git Pages
 
 ### Version 1.0.1
 _2024/08/28_
