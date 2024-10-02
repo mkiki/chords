@@ -60,6 +60,43 @@ const chords = [
   { tuning: "openg" },
 
 
+  // Double C
+  { name:    "C", tuning: "doublec", firstFret: 0, frets: [  0, 0, 0, 2 ] },
+  { name:    "Csus4", tuning: "doublec", firstFret: 0, frets: [  0, 0, 0, 3 ] },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+
+  { name:    "F", tuning: "doublec", firstFret: 0, frets: [  0, 2, 0, 3 ] },
+  { name:    "F", tuning: "doublec", firstFret: 3, frets: [  5, 5, 5, 3 ] },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+
+  { name:    "G", tuning: "doublec", firstFret: 0, frets: [  2, 0, 2, 0 ] },
+  { name:    "Gsus4", tuning: "doublec", firstFret: 0, frets: [  0, 0, 0, 0 ] },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+
+  { name:    "Dm", tuning: "doublec", firstFret: 0, frets: [  2, 2, 2, 3 ] },
+  { name:    "Dm7", tuning: "doublec", firstFret: 0, frets: [  0, 2, 2, 3 ] },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+
+  { name:    "E", tuning: "doublec", firstFret: 4, frets: [  4, 4, 4, 6 ] },
+  { name:    "E7", tuning: "doublec", firstFret: 1, frets: [  4, 1, 4, 0 ] },
+  { name:    "E7", tuning: "doublec", firstFret: 4, frets: [  4, 4, 4, 0 ] },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+  { tuning: "doublec" },
+
+
   // Sawmill
   { name: "Gsus", tuning: "sawmill", firstFret: 0, frets: [  0, 0, 0, 0 ] },
   { name:    "G", tuning: "sawmill", firstFret: 0, frets: [  0, 4, 2, 0 ] },

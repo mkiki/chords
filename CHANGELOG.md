@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.0.8
+_2024/10/02_
+* Added doubleC tuning chords
+
 ### Version 1.0.6
 _2024/08/28_
 * Fixed issue with version in header in deployed application
