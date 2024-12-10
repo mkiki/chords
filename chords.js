@@ -7,6 +7,7 @@ const tunings = {
   "openg": { name: "Open G" },
   "sawmill": { name: "Sawmill" },
   "doublec": { name: "Double C" },
+  "triplec": { name: "Triple C" },
 };
 
 const chords = [
@@ -433,7 +434,7 @@ function drawGroup(parent, dspacing, group, x, y) {
       const string = parseInt(note.substring(1, 2), 10);
       const hasString = string === string; // if NaN/false, then this is a pause (soupir)
       let effect = "";
-      if (note.endsWith("P") || note.endsWith("H") || note.endsWith("S") || note.endsWith("g")) 
+      if (note.endsWith("P") || note.endsWith("H") || note.endsWith("S") || note.endsWith("g") || note.endsWith("b")) 
         effect = note.substring(note.length - 1);
       let fret = note.substring(2, note.length - effect.length);
       if (effect == "g") fret = "(" + fret + ")";
@@ -500,10 +501,18 @@ function drawGroup(parent, dspacing, group, x, y) {
             .attr('fill', 'white');
 
           // effect name ("H", "P", ...)
+          var effectText = effect;
+          var effectTextX = x - lastStep/2;
+          var effectTextY = y - options.stringh - 8 + deltay;
+          if (effect == "b") {
+            effectText = "1/4";
+            effectTextX = effectTextX + 9;
+            effectTextY = effectTextY + 6;
+          }
           gliaisons.append('text')
-            .text(effect)
-            .attr('x', x - lastStep/2)
-            .attr('y', y - options.stringh - 8 + deltay)
+            .text(effectText)
+            .attr('x', effectTextX)
+            .attr('y', effectTextY)
             .attr('text-anchor', 'middle')
             .attr('dominant-baseline', 'middle')
             .attr('font-size', '0.8em');
@@ -525,6 +534,17 @@ function drawGroup(parent, dspacing, group, x, y) {
             .attr('x2', x - 8)
             .attr('y1', y + 2)
             .attr('y2', y - 6)
+            .attr("stroke", "black")
+            .attr("stroke-width", 2)
+            .attr("fill", "transparent");
+        }
+        // 1/4 bend
+        else if (effect == "b") {
+          gliaisons.append("line")
+            .attr('x1', x + 6)
+            .attr('x2', x + 16)
+            .attr('y1', y + 2)
+            .attr('y2', y - 12)
             .attr("stroke", "black")
             .attr("stroke-width", 2)
             .attr("fill", "transparent");

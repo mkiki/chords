@@ -1,5 +1,11 @@
 # Changelog
 
+### Version 1.0.9
+_2024/12/10_
+* Triple C tuning
+* Raleigh & Spencer song
+* 1/4 Bends
+
 ### Version 1.0.8
 _2024/10/02_
 * Added doubleC tuning chords
