@@ -33,8 +33,44 @@ body {
   border-bottom: 1px solid #cfbf9b;
 }
 
+.header span.title {
+  padding: 0;
+  margin: 0;
+  font-size: 1em;
+  min-width: 140px;
+}
+
 .hgap {
   flex-grow: 1;
+}
+
+.instruments {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  margin-left: 44px;
+}
+
+.instrument {
+  width: 44px;
+  height: 44px;
+  margin-top: 2px;
+  margin-left: 16px;
+  opacity: 0.9;
+  padding: 6px;
+}
+
+.instrument.selected {
+  background-color: #f5eace;
+}
+
+.instrument:hover {
+  background-color: #cfbf9b;
+}
+
+.instrument.disabled, .instrument.disabled:hover {
+  opacity: 0.3;
+  background-color: transparent;
 }
 
 .version {

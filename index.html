@@ -14,7 +14,16 @@
 <body>
     <div class="header">
         <img src="Banjo.png" alt="Banjo" class="banjo">
-        Banjo Tunes
+        <span class="title">Chords</span>
+        <div class="instruments">
+            <img src="img/microphone.png" alt="microphone" id="microphone" class="instrument">
+            <img src="img/banjo.png" alt="banjo" id="banjo" class="instrument">
+            <img src="img/dulcimer.png" alt="dulcimer" id="dulcimer" class="instrument">
+            <img src="img/epinette.png" alt="epinette" id="epinette" class="instrument">
+            <img src="img/guitar.png" alt="guitar" id="guitar" class="instrument disabled">
+            <img src="img/mandolin.png" alt="mandolin" id="mandolin" class="instrument disabled">
+            <img src="img/piano.png" alt="piano" id="piano" class="instrument disabled">
+        </div>
         <div class="version" id="version"></div>
         <div class="hgap"></div>
         <div class="action-bar">
@@ -28,10 +37,7 @@
         </div>
     </div>
     <div class="body">
-        <div class="lrail">
-            <div id="chord-menu" class="menu"></div>
-            <div id="banjo-menu" class="menu"></div>
-            <div id="song-menu" class="menu"></div>
+        <div class="lrail" id="lrail">
         </div>
         <div class="canvas">
             <svg id="svg"></svg>
@@ -74,17 +80,11 @@
     </script>
     
     <script>
-        let pageType = undefined;
-        let displayMode = "screen";
+        let pageType = undefined;           // song/block
+        let displayMode = "screen";         // screen/print
         let displayFunc = undefined;
+        let instrument = "banjo";           // current selected instrucment
 
-        const chordMenuItems = [
-            { id: "menu-chords-openg", name: "Open G", param: "openg" },
-            { id: "menu-chords-sawmill", name: "Sawmill", param: "sawmill" },
-            { id: "menu-chords-doublec", name: "Double C", param: "doublec" },
-        ];
-        const banjoMenuItems = getMenu("banjo");
-        const songMenuItems = getMenu("song");
 
         function refresh() {
             songActions = "none";
@@ -107,6 +107,12 @@
         }
 
         function createMenu(id, title, items, newPageType, fn) {
+            const lrail = document.getElementById("lrail");
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'menu'; 
+            lrail.appendChild(div);
+
             const menu = document.getElementById(id);
             menu.innerHTML = "";
             menu.innerHTML += "<div class='menu-title'><span>" + title + "</span></div>";
@@ -133,10 +139,6 @@
             }
         }
 
-        createMenu("chord-menu", "Chords", chordMenuItems, "chords", showChords);
-        createMenu("banjo-menu", "Banjo", banjoMenuItems, "song", showSong);
-        createMenu("song-menu", "Songs", songMenuItems, "song", showSong);
-
         // Toggle buttons for display mode: "screen" or "print"
         function setDisplayMode(mode) {
             const elements = document.querySelectorAll('.display');
@@ -147,11 +149,66 @@
             refresh();
         }
 
+        // Toggle the current instrument
+        function setInstrument(newInstrument, title) {
+            instrument = newInstrument;
+
+            // Set page title
+            const span = document.querySelector('.title');
+            span.textContent = title;
+
+            // Make the new instrument the selected one by highlighting the background with the "selected" class
+            const instruments = document.querySelectorAll('.instrument');
+            instruments.forEach(i => {
+                i.classList.remove('selected');
+            });
+            document.getElementById(instrument).classList.add('selected');
+
+            // Rebuild the left rail menu completely
+            const lrail = document.getElementById("lrail");
+            while (lrail.firstChild)
+                lrail.removeChild(lrail.firstChild);
+
+            const chordMenuItems = [
+                { id: "menu-chords-openg", name: "Open G", param: "openg" },
+                { id: "menu-chords-sawmill", name: "Sawmill", param: "sawmill" },
+                { id: "menu-chords-doublec", name: "Double C", param: "doublec" },
+            ];
+            const banjoMenuItems = getMenu("banjo");
+            const songMenuItems = getMenu("song");
+
+            if (instrument == "banjo") {
+                createMenu("chord-menu", "Chords", chordMenuItems, "chords", showChords);
+                createMenu("banjo-menu", "Banjo", banjoMenuItems, "song", showSong);
+            }
+            else if (instrument == "microphone") {
+                createMenu("song-menu", "Songs", songMenuItems, "song", showSong);
+            }
+
+            // Refresh the page
+            refresh();
+        }
+
+        setInstrument("banjo", "Banjo");
+
         document.getElementById("display-screen").addEventListener("click", function() {
             setDisplayMode("screen");
         });
         document.getElementById("display-print").addEventListener("click", function() {
             setDisplayMode("print");
+        });
+
+        document.getElementById("microphone").addEventListener("click", function() {
+            setInstrument("microphone", "Songs");
+        });
+        document.getElementById("banjo").addEventListener("click", function() {
+            setInstrument("banjo", "Banjo");
+        });
+        document.getElementById("dulcimer").addEventListener("click", function() {
+            setInstrument("dulcimer", "Dulcimer");
+        });
+        document.getElementById("epinette").addEventListener("click", function() {
+            setInstrument("epinette", "Epinette");
         });
 
         // Toggle buttons for song options: display "tablature" and display "lyrics"

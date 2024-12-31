@@ -1,5 +1,9 @@
 # Changelog
 
+### Version 1.0.10
+_2024/12/31_
+* Reorganized the menu to display multiple instruments
+
 ### Version 1.0.9
 _2024/12/10_
 * Triple C tuning
